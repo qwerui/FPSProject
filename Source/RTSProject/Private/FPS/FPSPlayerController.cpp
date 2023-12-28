@@ -72,11 +72,16 @@ void AFPSPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
 
-	FPSWidget = CreateWidget<UFPSWidget>(this, FPSWidgetClass);
+	 
 
-	if (FPSWidget != nullptr)
+	if (IsLocalController())
 	{
-		FPSWidget->AddToViewport();
+		FPSWidget = CreateWidget<UFPSWidget>(this, FPSWidgetClass);
+		
+		if (FPSWidget)
+		{
+			FPSWidget->AddToViewport();
+		}
 	}
 
 	//테스트용 코드
@@ -112,8 +117,6 @@ void AFPSPlayerController::SetupInputComponent()
 void AFPSPlayerController::OnPossess(APawn* InPawn)
 {
 	Super::OnPossess(InPawn);
-
-	auto FPSCharacter = Cast<AFPSCharacter>(InPawn);
 }
 
 #pragma region InputCallbacks
@@ -155,7 +158,7 @@ void AFPSPlayerController::ExecuteLeft(const FInputActionInstance& Instance)
 {
 	auto PlayerPawn = GetPawn<AFPSCharacter>();
 
-	if (PlayerPawn)
+	if (PlayerPawn != nullptr)
 	{
 		PlayerPawn->LeftAction();
 	}	

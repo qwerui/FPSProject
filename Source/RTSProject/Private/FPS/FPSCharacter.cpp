@@ -15,6 +15,7 @@
 #include "FPS/FPSWidget.h"
 #include "FPS/DeadPawn.h"
 #include "Engine/DamageEvents.h"
+#include "Kismet/GameplayStatics.h"
 
 
 // Sets default values
@@ -82,6 +83,16 @@ void AFPSCharacter::BeginPlay()
 void AFPSCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	
+	if (CurrentWeapon)
+	{
+		auto Gun = Cast<AGun>(CurrentWeapon);
+
+		if (Gun)
+		{
+			LeftHandTransform = Gun->GetLeftHandTransform();
+		}
+	}
 }
 
 void AFPSCharacter::Move(FVector2D Axis)
@@ -131,7 +142,7 @@ void AFPSCharacter::Reload()
 	}
 }
 
-void AFPSCharacter::SetGun(AWeapon* NewGun)
+void AFPSCharacter::SetGun(AGun* NewGun)
 {
 	bHasRifle = true;
 
@@ -150,7 +161,6 @@ void AFPSCharacter::SetGun(AWeapon* NewGun)
 	{
 		GetMesh()->GetSocketByName(TEXT("weapon_slot"))->AttachActor(CurrentWeapon, GetMesh());
 	}
-
 }
 
 void AFPSCharacter::PlaySound(USoundBase* Sound)

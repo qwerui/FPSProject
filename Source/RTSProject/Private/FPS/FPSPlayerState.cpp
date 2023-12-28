@@ -13,10 +13,7 @@ void AFPSPlayerState::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 
-	if (GetLocalRole() == ENetRole::ROLE_Authority)
-	{
-		RemainRespawnTime -= DeltaSeconds;
-	}
+	RemainRespawnTime -= DeltaSeconds;
 }
 
 void AFPSPlayerState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const

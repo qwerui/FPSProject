@@ -26,6 +26,8 @@ class RTSPROJECT_API AFPSCharacter : public ACharacter
 	bool bHasRifle;
 	UPROPERTY(Replicated, BlueprintReadOnly, meta=(AllowPrivateAccess = "true"))
 	float AimPitch;
+	UPROPERTY(BlueprintReadOnly, meta=(AllowPrivateAccess = "true"))
+	FTransform LeftHandTransform;
 
 	UPROPERTY(ReplicatedUsing = OnRep_CurrentHP, Transient, meta = (ClampMin = 0))
 	float CurrentHP;
@@ -64,7 +66,7 @@ public:
 	void Reload();
 
 	float GetHP() const { return CurrentHP; }
-	void SetGun(class AWeapon* NewGun);
+	void SetGun(class AGun* NewGun);
 	void PlaySound(class USoundBase* Sound);
 	UObject* GetWeaponIcon();
 

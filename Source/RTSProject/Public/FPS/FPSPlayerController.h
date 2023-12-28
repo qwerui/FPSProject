@@ -26,12 +26,18 @@ class RTSPROJECT_API AFPSPlayerController : public APlayerController
 
 #pragma region InputActions
 
+	UPROPERTY()
 	TObjectPtr<class UInputMappingContext> InputContext;
 
+	UPROPERTY()
 	TObjectPtr<class UInputAction> MoveAction;
+	UPROPERTY()
 	TObjectPtr<class UInputAction> TurnAction;
+	UPROPERTY()
 	TObjectPtr<class UInputAction> JumpAction;
+	UPROPERTY()
 	TObjectPtr<class UInputAction> LeftAction;
+	UPROPERTY()
 	TObjectPtr<class UInputAction> ReloadAction;
 
 #pragma endregion
@@ -50,10 +56,15 @@ protected:
 private:
 #pragma region InputCallbacks
 
+	UFUNCTION()
 	void Move(const struct FInputActionInstance& Instance);
+	UFUNCTION()
 	void Turn(const struct FInputActionInstance& Instance);
+	UFUNCTION()
 	void Jump(const struct FInputActionInstance& Instance);
+	UFUNCTION()
 	void ExecuteLeft(const struct FInputActionInstance& Instance);
+	UFUNCTION()
 	void Reload(const struct FInputActionInstance& Instance);
 
 #pragma endregion

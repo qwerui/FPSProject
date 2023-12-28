@@ -63,9 +63,9 @@ void AFPSGameMode::PlayerDied(APlayerController* DeadPlayer, APlayerController* 
 	}
 	else
 	{
-		Cast<AFPSPlayerController>(DeadPlayer)->SetDeadWidgetVisibility(true);
 		DeadPlayer->GetPlayerState<AFPSPlayerState>()->SetRespawnTime(MinRespawnDelay);
 		RespawnQueue.Enqueue(DeadPlayer);
+		Cast<AFPSPlayerController>(DeadPlayer)->SetDeadWidgetVisibility(true);
 	}
 }
 

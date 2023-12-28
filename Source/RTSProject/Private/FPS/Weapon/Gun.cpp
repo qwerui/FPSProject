@@ -7,6 +7,7 @@
 #include "NiagaraComponent.h"
 #include "FPS/FPSWidget.h"
 #include "FPS/FPSPlayerController.h"
+#include "Engine/DecalActor.h"
 #include "FPS/Weapon/Crosshair.h"
 
 AGun::AGun()
@@ -61,7 +62,7 @@ void AGun::Destroyed()
 {
 	if (Crosshair)
 	{
-		Crosshair->RemoveFromViewport();
+		Crosshair->RemoveFromParent();
 	}
 
 	Super::Destroyed();

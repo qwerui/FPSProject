@@ -26,13 +26,6 @@ UFPSWidget::UFPSWidget(const FObjectInitializer& ObjectInitializer) : Super(Obje
 void UFPSWidget::NativeOnInitialized()
 {
 	Super::NativeOnInitialized();
-
-	auto FPSCharacter = GetOwningPlayerPawn<AFPSCharacter>();
-
-	if (FPSCharacter)
-	{
-		SetPlayer(FPSCharacter);
-	}
 }
 
 void UFPSWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
@@ -46,6 +39,16 @@ void UFPSWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 		if (PlayerState)
 		{
 			RespawnTime->SetText(FText::FromString(FString::Printf(TEXT("Respawn Time : %d"), (int)PlayerState->GetRespawnTime())));
+		}
+	}
+
+	auto FPSCharacter = GetOwningPlayerPawn<AFPSCharacter>();
+
+	if (FPSCharacter)
+	{
+		if (!PlayerCharacter.IsValid() || FPSCharacter != PlayerCharacter.Get())
+		{
+			SetPlayer(FPSCharacter);
 		}
 	}
 }
@@ -157,7 +160,7 @@ void UFPSWidget::EnableHitScreen(float Angle)
 		HitScreenPool.Dequeue(HitScreen);
 		HitScreen->Reset();
 	}
-	GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Blue, FString::Printf(TEXT("%f"), Angle));
+	//GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Blue, FString::Printf(TEXT("%f"), Angle));
 	HitScreen->SetRenderTransformAngle(Angle);
 	HitScreen->SetVisibility(ESlateVisibility::Visible);
 }

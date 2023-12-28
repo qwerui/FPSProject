@@ -16,14 +16,16 @@ class RTSPROJECT_API AWeapon : public AActor
 {
 	GENERATED_BODY()
 
+protected:
 	UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"));
 	TObjectPtr<class USkeletalMeshComponent> Mesh;
 
-protected:
 	TWeakObjectPtr<class AFPSCharacter> Player;
 
-	ILeftAction* LeftStrategy;
-	IReloadAction* ReloadStrategy;
+	UPROPERTY()
+	TScriptInterface<ILeftAction> LeftStrategy;
+	UPROPERTY()
+	TScriptInterface<IReloadAction> ReloadStrategy;
 
 public:
 	AWeapon();

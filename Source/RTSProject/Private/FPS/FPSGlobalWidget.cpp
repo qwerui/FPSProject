@@ -52,7 +52,7 @@ void UFPSGlobalWidget::ShowKillLog(FString DeadName, FString KillName, UObject* 
 		WeaponBrush.SetResourceObject(WeaponIcon);
 	}
 	
-	TargetWidget->InitWidget(DeadName, KillName, WeaponBrush, bKillIsRed);
+	TargetWidget->InitWidget(KillName, DeadName, WeaponBrush, bKillIsRed);
 	KillLogBox->AddChildToVerticalBox(TargetWidget);
 }
 

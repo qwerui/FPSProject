@@ -68,4 +68,5 @@ public:
 
 	float GetCurrentDelay() const { return CurrentShotDelay; }
 	FString GetAmmoStateString() const { return FString::Printf(TEXT("%d / %d"), CurrentAmmo, MaxAmmo); }
+	FTransform GetLeftHandTransform() const { return Mesh->GetSocketTransform(TEXT("leftHand")); }
 };
